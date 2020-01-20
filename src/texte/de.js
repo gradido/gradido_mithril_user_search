@@ -134,6 +134,13 @@ export default {
     }
     
   },
-  NO_USER_FOUND: 'Keine Benutzer gefunden'
-  
+  NO_USER_FOUND: 'Keine Benutzer gefunden',
+  USER_FOUND: 'Benutzer gefunden',
+  NAME: 'Name',
+  EMAIL: 'E-Mail',
+  BALANCE: 'Kontostand',
+  PUBLIC_KEY: 'Öffentlicher<br>Schlüssel',
+  CREATED: 'Erstellt'
 }
+
+

@@ -6,20 +6,17 @@
     "functional",
     "client",
     "browser",
-	"gradido"
+    "gradido"
   ],
   "scripts": {
     "prebuild": "browserify ./src/app.js -t [ babelify --presets [ @babel/preset-env ] ] -o ./tmp/main.rl.js -v",
     "build": "browserify ./tmp/main.rl.js -g uglifyify -p bundle-collapser/plugin | uglifyjs --compress --mangle toplevel,eval > ../gradido_single_dev_node/webroot/js/userSearch.min.js",
-    "watch": "watchify ./src/app.js  -t [ babelify --presets [ @babel/preset-env ] ] -o ../gradido_single_dev_node/webroot/js/userSearch.js -v",
+    "watch": "watchify ./src/app.js  -t [ babelify --presets [ @babel/preset-env ] ] -o ../gradido_single_dev_node/webroot/js/userSearch.js -v"
   },
   "author": "Dario Rekowski",
   "contributors": [],
   "dependencies": {
-    "js-sha256": "^0.9.0",
-    "md5": "^2.2.1",
     "mithril": "github:StephanHoyer/mithril.js#rewrite",
-    "ts-md5": "^1.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
