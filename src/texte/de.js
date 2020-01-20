@@ -133,6 +133,7 @@ export default {
       }
     }
     
-  } 
+  },
+  NO_USER_FOUND: 'Keine Benutzer gefunden'
   
 }
