@@ -1,6 +1,7 @@
 import m from 'mithril'
 
 import row from './row'
+import rowAction from './rowAction'
 /*
  * 
   <table class="table table-hover table-sm">
@@ -20,17 +21,31 @@ import row from './row'
   
  */
 
+function oninit(vnode) {
+  vnode.state.orderedUsers = [];
+  for(let i in vnode.attrs.users) {
+    vnode.state.orderedUsers.push(vnode.attrs.users[i])
+  }
+}
+
 function view (vnode) {
+  
    return m('table.table.table-hover.table-sm', [
      m('thead', m('tr.solid-header', [
-       m('th.pl-4', window.texte.NAME),
+       m('th', {style:{'padding-left':'1.5rem'}}),
+       m('th', window.texte.NAME),
        m('th', window.texte.EMAIL),
        m('th', window.texte.BALANCE),
-       m('th', window.texte.PUBLIC_KEY),
+       m('th', m.trust(window.texte.PUBLIC_KEY)),
        m('th', window.texte.CREATED)
      ])),
-     m('tbody', m('userTableBody', {users:vnode.attrs.users}))
+     m('tbody', vnode.attrs.users.map(value => {
+       return [
+         m(row, {user:value}),
+         //m(rowAction, {user:value})
+       ]
+     }))
    ])
 }
 
-export default { view }
+export default { view, oninit }

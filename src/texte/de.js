@@ -32,16 +32,13 @@ $color = 'danger';
 $state = 'account not on community server';
 $color = 'secondary';
 
-$state = 'email not activated';
-$color = 'warning';
-
 $state = 'no keys';
 $color = 'warning';
  */
 
 export default {
   ACCOUNT_STATES: {
-    lines: [
+    LINES: [
       {
         title: 'Login-Server',
         '+': 'Das Benutzer-Konto liegt auf dem Login-Server!',
@@ -94,7 +91,7 @@ export default {
       }
     },
     'account copied to community': {
-      title: 'Konto auf den Gemeinschafts-Server kopiert',
+      title: 'Konto auf Gemeinschafts-Server',
       color: 'success',
       description: {
         title: 'Das Konto ist vollständig aktiviert und es können Gradidos überwiesen werden.',

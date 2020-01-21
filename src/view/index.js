@@ -15,7 +15,7 @@ function view (vnode) {
    if(g_users === undefined) {
      return m('')
    }
-   else if(count(g_users) > 0) {
+   else if(g_users.length > 0) {
      return m('', [
        m('.grid-body.py-3', m('p.grid-header', window.texte.USER_FOUND)),
        m('.table-responsive', m(userTable, {users:g_users}))
