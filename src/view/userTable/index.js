@@ -1,7 +1,7 @@
 import m from 'mithril'
 
 import row from './row'
-import rowAction from './rowAction'
+
 /*
  * 
   <table class="table table-hover table-sm">

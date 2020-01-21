@@ -53,8 +53,8 @@ export default class AccountState {
     
     getTooltip() {
       const ac_texte = window.texte.ACCOUNT_STATES[this.stateName]
-      return m('', [
-        m('span', ac_texte.description.title),
+      return m('.grid', [
+        m('h6.grid-header', ac_texte.description.title),
         ac_texte.description.lines != undefined ? 
           m('ul', ac_texte.description.lines.map((short, index) => {
             //console.log('line short: %o, index: %o', short, index)
@@ -64,13 +64,52 @@ export default class AccountState {
               symbol = '.mdi-check.color-success'
             } else if(short === '-') {
               symbol = '.mdi-close.color-danger'
+            } else if(short === '/') {
+              symbol = '.mdi-alert-circle-outline.color-warning'
             }
             return m('li', [
               m('i.mdi' + symbol),
-              m('span', lineText.title + ': ' + lineText[short])
+              m('span', m.trust('&nbsp;')),
+              m('span', [
+                m('b', lineText.title + ': '),
+                m('span', lineText[short])
+              ])
             ])
           })) : null
       ])
+    }
+    getTooltipText() {
+      //console.log("getTooltipText")
+      const ac_texte = window.texte.ACCOUNT_STATES[this.stateName]
+      let html = '<div class="grid">';
+      html += '<h6 class="grid-header">' + ac_texte.description.title + '</h6>'
+      if(ac_texte.description.lines != undefined) {
+        html += '<ul>';
+        for(let i in ac_texte.description.lines) {
+          const symbol = ac_texte.description.lines[i]
+          const lineText = window.texte.ACCOUNT_STATES.LINES[i]
+          let symbolClass = 'mdi '
+          if(symbol === '+') {
+            symbolClass += ' mdi-check color-primary'
+          } else if(symbol === '-') {
+            symbolClass += ' mdi-close color-danger'
+          } else if(symbol === '/') {
+            symbolClass += ' mdi-alert-circle-outline color-warning'
+          } else {
+            continue;
+          }
+          html += '<li>';
+          html += '<i class="' + symbolClass + '"></i>';
+          html += '<span>&nbsp;</span>';
+          
+          html += '<span><b>' + lineText.title + ': </b>' + lineText[symbol] + '</span>'
+          html += '</li>';
+        }
+        html += '</ul>';
+      }
+      html += '</div>';
+      //console.log("return html: %o", html)
+      return html;
     }
     
     

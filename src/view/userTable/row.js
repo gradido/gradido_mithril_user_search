@@ -3,9 +3,7 @@ import m from 'mithril'
 import AccountState from '../../model/AccountState'
 import Gradido from '../../lib/Gradido'
 
-//import { createPopper } from '@popperjs/core/lib/popper-lite.js';
-import { createPopper } from '@popperjs/core';
-//import Popper from '@popperjs/core';
+import Tooltip from '../../lib/Tooltip'
 
 /*
  * <tr>
@@ -28,13 +26,6 @@ import { createPopper } from '@popperjs/core';
       </tr>
 */
 
-function loadTooltip(vnode, element, init, context) {
-  console.log("load tooltip: %o", element)
-  //const tooltip = event.target.querySelector('.tooltip');
-  /*createPopper(event.target, tooltip, {
-    placement: 'right',
-  });*/
-}
 
 function oninit(vnode) {
   vnode.state.status = new AccountState(vnode.attrs.user.indicator.name)
@@ -63,17 +54,16 @@ function view (vnode) {
      case 'warning': actionColor = 'danger'; break;
      case 'text': actionColor = 'secondary'; break;
    }
-   
+   //const tooltipContent = status.getTooltipText()
     
    return m('tr', [
      m('td', actionColor !== false ? m('i.mdi.mdi-menu-down.btn.btn-xs.btn-' + actionColor) : null),
      m('td.pr-0',[
        m('span.text-black.font-weight-medium.d-block', user.name),
-       m('span', {config: (element, init, context)  => {loadTooltip(vnode, element, init, context); return false}}, [
-         m('span.status-indicator.rounded-indicator.small.' + statusColor),
-         m('small', statusTitle),
-         m('.tooltip', {style:{display:'none'}}, status.getTooltip())
-       ])
+       m(Tooltip(m('span', [
+          m('span.status-indicator.rounded-indicator.small.' + statusColor),
+          m('small', statusTitle),
+        ])), {accountState:status}), 
      ]),
      m('td', user.email),
      m('td', m(Gradido, {centAmount:user.balance})),
