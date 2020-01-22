@@ -1,30 +1,22 @@
 import m from 'mithril'
 
-import row from './row'
+import rowView from './rowView'
+import rowAction from './rowAction'
 
-/*
- * 
-  <table class="table table-hover table-sm">
-    <thead>
-      <tr class="solid-header">
-        <th class="pl-4">Name</th>
-        <th>E-Mail</th>
-        <th>Kontostand</th>
-        <th>Public Key</th>
-        <th>Erstellt</th>
-      </tr>
-    </thead>
-    <tbody>
-      foreach: userTableRow
-    </tbody>
-  </table>
-  
- */
 
 function oninit(vnode) {
   vnode.state.orderedUsers = [];
   for(let i in vnode.attrs.users) {
     vnode.state.orderedUsers.push(vnode.attrs.users[i])
+  }
+  vnode.state.openedUser = -1
+}
+
+function openButtonClick(vnode, index) {
+  if(vnode.state.openedUser === index) {
+    vnode.state.openedUser = -1
+  } else {
+    vnode.state.openedUser = index 
   }
 }
 
@@ -39,9 +31,11 @@ function view (vnode) {
        m('th', m.trust(window.texte.PUBLIC_KEY)),
        m('th', window.texte.CREATED)
      ])),
-     m('tbody', vnode.attrs.users.map(value => {
+     m('tbody', vnode.state.orderedUsers.map((value, index) => {
+       const open = vnode.state.openedUser === index
        return [
-         m(row, {user:value}),
+         m(rowView, {user:value, open:open, btnClick:() => {openButtonClick(vnode, index)}}),
+         open ? m(rowAction, {user:value}) : null
          //m(rowAction, {user:value})
        ]
      }))

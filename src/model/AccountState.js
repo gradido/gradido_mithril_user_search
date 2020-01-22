@@ -29,26 +29,19 @@ export default class AccountState {
       return 'bg-' + this.texte.color
     }
     
+    getRawColor() {
+      return this.texte.color
+    }
+    
     getTitle() {
       return this.texte.title
     }
     
     hasActions() {
-      switch(this.stateName) {
-        case 'account created':
-        case 'email not activated':
-        // currently didn't occure
-        case 'account not on community server': 
-        case 'email activated': 
-          return 'btn';
-        
-        case 'account not on login-server':
-        case 'account multiple times on login-server':
-          return 'warning';
-          
-        case 'account copied to community': 
-          return false;
+      if(this.stateName === 'account copied to community') {
+        return false;
       }
+      return true;
     }
     
     getTooltip() {

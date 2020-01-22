@@ -72,6 +72,14 @@ export default {
       description: {
         title: 'Das Konto wurde auf dem Login-Server angelegt, vermutlich durch eine elopage-Anmeldung.',
         lines: ['+', '-', '-', '-', '-']
+      },
+      todo: {
+        title: 'Als nächstes müsste der Benutzer den Link in seiner E-Mail anklicken und den Anweisungen folgen. ',
+        lines: [
+          'Stimmt die E-Mail Adresse? Hat der Benutzer in seinem Spam-Verzeichnis nachgesehen?',
+          '{{verification-resend}}',
+          '{{mailto-verification-resend}}'
+        ]
       }
     },
     'account not on login-server': {
@@ -80,6 +88,14 @@ export default {
       description: {
         title: 'Das Konto existiert nicht (mehr) auf dem Login-Server: ein Fehler oder es wurde nur teilweise gelöscht.',
         lines: ['-', '+', '+', '+', '/']
+      },
+      todo: {
+        title: 'Wenn der Benutzer seine Passphrase hat, kann er sein Konto auf dem Login-Server wiederherstellen, ansonsten bleibt eigentlich nur das Konto auf dem Gemeinschafts-Server zu löschen',
+        lines: [
+          '{{copy-from-community-to-login-server}}',
+          '{{user-transactions-overview}}',
+          '{{delete-from-community-server}}'
+        ]
       }
     },
     'email activated': {
@@ -88,7 +104,14 @@ export default {
       description: {
         title: 'Das Konto wurde vom Benutzer aktiviert und Schlüssel erzeugt, aber noch nicht auf diesen Gemeinschafts-Server kopiert.',
         lines: ['+', '+', '+', '-', '-']
+      },
+      todo: {
+        title: 'Das Benutzer Konto müsste vom Login-Server auf den Community-Server kopiert werden.',
+        lines: [
+          '{{copy-from-login-to-community-server}}'
+        ]
       }
+      
     },
     'account copied to community': {
       title: 'Konto auf Gemeinschafts-Server',
@@ -101,9 +124,18 @@ export default {
     'email not activated': {
       title: 'Konto nicht aktiviert',
       color: 'warning',
+      
       description: {
         title: 'Das Konto wurde auf dem Login-Server angelegt, vermutlich durch eine elopage-Anmeldung. Es wurde aber noch nicht aktiviert!',
         lines: ['+', '-', '-', '-', '-']
+      },
+      todo: {
+        title: 'Als nächstes müsste der Benutzer den Link in seiner E-Mail anklicken und den Anweisungen folgen. ',
+        lines: [
+          'Stimmt die E-Mail Adresse? Hat der Benutzer in seinem Spam-Verzeichnis nachgesehen?',
+          '{{verification-resend}}',
+          '{{mailto-verification-resend}}'
+        ]
       }
     },
     'account multiple times on login-server': {
@@ -111,6 +143,12 @@ export default {
       color: 'danger',
       description: {
         title: 'Das Konto ist auf dem Login-Server mehrfach vorhanden, das sollte nicht sein, auf dem Login-Server muss ein Fehler passiert sein!!'
+      },
+      todo: {
+        title: 'Du solltest mit dem Entwickler in Kontakt treten.',
+        lines: [
+          '{{mailto-developer}}'
+        ]
       }
     },
     'account not on community server': {
@@ -118,7 +156,11 @@ export default {
       color: 'secondary',
       description: {
         title: 'Das Konto wurde auf dem Login-Server angelegt, aber existiert noch nicht auf dem Gemeinschafts-Server!',
-        lines: ['+', null, null, '-', '-']
+        lines: ['+', null, '-', '-', '-']
+      },
+      todo: {
+        title: 'Das sollte eigentlich nicht passieren, du solltest mit dem Entwickler sprechen.',
+        lines: ['{{mailto-developer}}']
       }
     },
     'no keys': {
@@ -126,10 +168,18 @@ export default {
       color: 'warning',
       description: {
         title:'Das Konto wurde auf dem Login-Server angelegt, aber es wurden noch keine Schlüssel generiert!',
-        line: ['+', '+', '-', '-', '-']
+        lines: ['+', '+', '-', '-', '-']
+      },
+      todo: {
+        title: 'Der Benutzer muss sich mit seinen Daten einloggen, dann müsste er automatisch durch die Schlüsselgenerierung/Konto-Wiederherstellung geführt werden',
+        lines: [
+          '{{mailto-user-login}}',
+          'Wenn der Benutzer sein Passwort vergessen hat, kann er sich auch eine Passwort Reset E-Mail zuschicken lassen.',
+          '{{reset-password}}',
+          '{{mailto-reset-password}}'
+        ]
       }
     }
-    
   },
   NO_USER_FOUND: 'Keine Benutzer gefunden',
   USER_FOUND: 'Benutzer gefunden',
@@ -137,7 +187,8 @@ export default {
   EMAIL: 'E-Mail',
   BALANCE: 'Kontostand',
   PUBLIC_KEY: 'Öffentlicher<br>Schlüssel',
-  CREATED: 'Erstellt'
+  CREATED: 'Erstellt',
+  COPY_FROM_LOGIN_TO_COMMUNITY: 'Vom Login-Server zum Gemeinschaftsserver kopieren'
 }
 
 
