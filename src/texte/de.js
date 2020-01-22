@@ -188,7 +188,11 @@ export default {
   BALANCE: 'Kontostand',
   PUBLIC_KEY: 'Öffentlicher<br>Schlüssel',
   CREATED: 'Erstellt',
-  COPY_FROM_LOGIN_TO_COMMUNITY: 'Vom Login-Server zum Gemeinschaftsserver kopieren'
+  COPY_FROM_LOGIN_TO_COMMUNITY: 'Vom Login-Server zum Gemeinschafts-Server kopieren',
+  COPY_FROM_LOGIN_TO_COMMUNITY_SUCCESS: 'Kontodaten wurden erfolgreich vom Login-Server zu diesem Gemeinschafts-Server kopiert!',
+  COPY_FAILED:  'Fehler beim Kopieren',
+  AJAX_CRITICAL: 'Kritischer Fehler beim Ajax-Request'
+  
 }
 
 
