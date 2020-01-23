@@ -1,9 +1,9 @@
 /* 
  * @author: Dario Rekowski
  * 
- * @date: 22.01.20
+ * @date: 23.01.20
  *  
- * @brief: copy Account from Login-Server to Community-Server Button and ajax request
+ * @brief: delete user from Community-Server Button and ajax request
  */
 
 import m from 'mithril'
@@ -20,8 +20,8 @@ function oninit(vnode) {
 function cleanMessage(vnode) {
   vnode.state.message = null
   vnode.state.showDialog = false
-  if(vnode.state.copyResult === 'success' && typeof vnode.attrs.updateState === 'function') {
-    vnode.attrs.updateState('account copied to community')
+  if(vnode.state.copyResult === 'success' && typeof vnode.attrs.deleteUser === 'function') {
+    vnode.attrs.deleteUser()
   }
   //
 }
@@ -32,17 +32,17 @@ function click(vnode) {
   //ajaxCopyLoginToCommunity
   m.request({
     method:'POST',
-    url: window.location.protocol + '//' + document.domain + '/state-users/ajaxCopyLoginToCommunity',
+    url: window.location.protocol + '//' + document.domain + '/state-users/ajaxDelete',
     data: vnode.attrs.user,
   headers: {'X-CSRF-Token': csfr_token}
   }).then(function(result) {
       vnode.state.loading = false
       if(result.state === 'success') {
-        vnode.state.message = m('div.alert.alert-success', window.texte.COPY_FROM_LOGIN_TO_COMMUNITY_SUCCESS)
+        vnode.state.message = m('div.alert.alert-success', window.texte.DELETE_FROM_COMMUNITY_SUCCESS)
         vnode.state.copyResult = 'success'
       } else {
         //console.log("result error")
-        vnode.state.message  = m('div.alert.alert-danger', window.texte.COPY_FAILED)
+        vnode.state.message  = m('div.alert.alert-danger', window.texte.DELETE_FAILED)
         vnode.state.copyResult = 'error'
       }
 
@@ -63,25 +63,25 @@ function view(vnode) {
   return m('span', [
     m('span', [
       m('button.btn.btn-gradido-orange.btn-xs', {
-        title:window.texte.COPY_FROM_LOGIN_TO_COMMUNITY,
+        title:window.texte.DELETE_FROM_COMMUNITY,
         onclick:(e) => {click(vnode)},
         disabled: vnode.state.loading === true
       }, 
       vnode.state.loading === true ? 
           m('i.spinner-border.spinner-border-sm') : 
-          m('i.mdi.mdi-content-copy')
+          m('i.mdi.mdi-delete')
       ),
-      window.texte.COPY_FROM_LOGIN_TO_COMMUNITY
+      window.texte.DELETE_FROM_COMMUNITY
     ]),
     vnode.state.showDialog ? 
       m(dialog, {
-        title: window.texte.COPY_FROM_LOGIN_TO_COMMUNITY,
+        title: window.texte.DELETE_FROM_COMMUNITY,
         body: m('div', [
             vnode.state.loading ? 
               m('div', [
                 m('i.spinner-border.spinner-border-sm'), 
                 m.trust('&nbsp;'), 
-                window.texte.COPY_IN_PROGRESS]
+                window.texte.DELETE_IN_PROGRESS]
               ) : null,
             m('div', vnode.state.message)
         ]),

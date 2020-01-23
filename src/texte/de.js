@@ -92,7 +92,10 @@ export default {
       todo: {
         title: 'Wenn der Benutzer seine Passphrase hat, kann er sein Konto auf dem Login-Server wiederherstellen, ansonsten bleibt eigentlich nur das Konto auf dem Gemeinschafts-Server zu löschen',
         lines: [
+          'Nachdem das Konto auf dem Login-Server kopiert wurde, bekommt der Benutzer automatisch eine E-Mail mit einem Link zur Kontoaktivierung zugeschickt.',
           '{{copy-from-community-to-login-server}}',
+          '<hr>',
+          'Es wird nur der Benutzer gelöscht, nicht seine Transaktionen. Zu diesen hat er wieder Zugriff wenn er sein Konto mit Hilfe seiner Passphrase wiederhergestellt hat.',
           '{{user-transactions-overview}}',
           '{{delete-from-community-server}}'
         ]
@@ -106,7 +109,7 @@ export default {
         lines: ['+', '+', '+', '-', '-']
       },
       todo: {
-        title: 'Das Benutzer Konto müsste vom Login-Server auf den Community-Server kopiert werden.',
+        title: 'Das Benutzer Konto müsste vom Login-Server auf den Gemeinschafts-Server kopiert werden.',
         lines: [
           '{{copy-from-login-to-community-server}}'
         ]
@@ -190,8 +193,16 @@ export default {
   CREATED: 'Erstellt',
   COPY_FROM_LOGIN_TO_COMMUNITY: 'Vom Login-Server zum Gemeinschafts-Server kopieren',
   COPY_FROM_LOGIN_TO_COMMUNITY_SUCCESS: 'Kontodaten wurden erfolgreich vom Login-Server zu diesem Gemeinschafts-Server kopiert!',
+  DELETE_FROM_COMMUNITY: 'Benutzer Konto vom Gemeinschafts-Server löschen',
+  DELETE_FROM_COMMUNITY_SUCCESS: 'Benutzer Konto vom Gemeinschafts-Server erfolgreich gelöscht',
   COPY_FAILED:  'Fehler beim Kopieren',
-  AJAX_CRITICAL: 'Kritischer Fehler beim Ajax-Request'
+  DELETE_FAILED: 'Fehler beim löschen',
+  AJAX_CRITICAL: 'Kritischer Fehler beim Ajax-Request',
+  COPY_IN_PROGRESS: 'Wird kopiert',
+  DELETE_IN_PROGRESS: 'Wird gelöscht',
+  RECEIVE_TRANSACTIONS_COUNT: 'Erhaltene Transaktionen: ',
+  SENDED_TRANSACTIONS_COUNT:  'gesendete Transaktionen: ',
+  CREATION_TRANSACTIONS_COUNT: 'erhaltende Schöpfungs-Transaktionen: '
   
 }
 

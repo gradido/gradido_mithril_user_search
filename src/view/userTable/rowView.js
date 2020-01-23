@@ -6,13 +6,14 @@ import Gradido from '../../lib/Gradido'
 import Tooltip from '../../lib/Tooltip'
 
 function oninit(vnode) {
-  vnode.state.status = new AccountState(vnode.attrs.user.indicator.name)
+  
 }
 
 
 function view (vnode) {
+  
+   const status = new AccountState(vnode.attrs.user.indicator.name)
    const user = vnode.attrs.user
-   const status = vnode.state.status
    const statusColor = status.getColor()
    const statusTitle = status.getTitle()
    
