@@ -193,6 +193,8 @@ export default {
   CREATED: 'Erstellt',
   COPY_FROM_LOGIN_TO_COMMUNITY: 'Vom Login-Server zum Gemeinschafts-Server kopieren',
   COPY_FROM_LOGIN_TO_COMMUNITY_SUCCESS: 'Kontodaten wurden erfolgreich vom Login-Server zu diesem Gemeinschafts-Server kopiert!',
+  COPY_FROM_COMMUNITY_TO_LOGIN: 'Vom Gemeinschafts-Server zum Login-Server kopieren',
+  COPY_FROM_COMMUNITY_TO_LOGIN_SUCCESS: 'Kontodaten wurden erfolgreich vom Gemeinschafts-Server zum Login-Server kopiert!',
   DELETE_FROM_COMMUNITY: 'Benutzer Konto vom Gemeinschafts-Server löschen',
   DELETE_FROM_COMMUNITY_SUCCESS: 'Benutzer Konto vom Gemeinschafts-Server erfolgreich gelöscht',
   COPY_FAILED:  'Fehler beim Kopieren',

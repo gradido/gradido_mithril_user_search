@@ -30,6 +30,7 @@ function view (vnode) {
    let actionColor = false
    if(status.hasActions()) {
      actionColor = status.getRawColor()
+     actionColor = 'primary'
    }
    
    

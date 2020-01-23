@@ -2,6 +2,7 @@ import m from 'mithril'
 import copyLoginCommunity from './actions/copyLoginCommunity'
 import deleteCommunityServer from './actions/deleteCommunityServer'
 import userTransactionsOverview from './actions/userTransactionsOverview'
+import copyCommunityLogin from './actions/copyCommunityLogin'
 
 const checkTodoAction = new RegExp(/{{([a-z-]*)}}/)
 
@@ -15,6 +16,7 @@ function getAction(name) {
     case 'copy-from-login-to-community-server': return copyLoginCommunity;
     case 'delete-from-community-server': return deleteCommunityServer;
     case 'user-transactions-overview': return userTransactionsOverview;
+    case 'copy-from-community-to-login-server': return copyCommunityLogin;
   }
   return null
 }
