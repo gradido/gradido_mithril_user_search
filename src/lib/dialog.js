@@ -14,7 +14,7 @@ function view(vnode) {
                 m('p.grid-header', vnode.attrs.title),
                 m('div.modal-body', vnode.attrs.body),
                 m('div.modal-footer', [
-                  m('button.btn.btn-primary', {type:'button', 'data-dismiss':'modal', onclick:vnode.attrs.dismiss}, 'Ok')
+                  m('button.btn.btn-primary', {type:'button', disabled:vnode.attrs.btnDisabled, 'data-dismiss':'modal', onclick:vnode.attrs.dismiss}, 'Ok')
                 ])
             ])))
 }

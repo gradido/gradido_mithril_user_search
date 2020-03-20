@@ -3,6 +3,7 @@ import copyLoginCommunity from './actions/copyLoginCommunity'
 import deleteCommunityServer from './actions/deleteCommunityServer'
 import userTransactionsOverview from './actions/userTransactionsOverview'
 import copyCommunityLogin from './actions/copyCommunityLogin'
+import verificationResend from './actions/verificationResend'
 
 const checkTodoAction = new RegExp(/{{([a-z-]*)}}/)
 
@@ -14,9 +15,10 @@ function oninit(vnode) {
 function getAction(name) {
   switch(name) {
     case 'copy-from-login-to-community-server': return copyLoginCommunity;
-    case 'delete-from-community-server': return deleteCommunityServer;
+    //case 'delete-from-community-server': return deleteCommunityServer;
     case 'user-transactions-overview': return userTransactionsOverview;
     case 'copy-from-community-to-login-server': return copyCommunityLogin;
+    case 'verification-resend': return verificationResend;
   }
   return null
 }

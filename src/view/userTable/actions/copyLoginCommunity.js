@@ -60,6 +60,21 @@ function view(vnode) {
   // window.texte.COPY_FROM_LOGIN_TO_COMMUNITY
   //console.log('draw view')
   
+  return m(base, {
+    updateStateFunc: vnode.attrs.updateState,
+    successState: 'account copied to community',
+    actionNamePHP: 'ajaxCopyLoginToCommunity',
+    ajaxData: vnode.attrs.user,
+    alertSuccess: window.texte.COPY_FROM_LOGIN_TO_COMMUNITY_SUCCESS,
+    alertFailed:  window.texte.COPY_FAILED,
+    btnColor: 'btn-gradido-orange',
+    btnSymbol: 'mdi-content-copy',
+    btnTitle: window.texte.COPY_FROM_LOGIN_TO_COMMUNITY,
+    progessText: window.texte.COPY_IN_PROGRESS
+  })
+  
+  /*
+  
   return m('span', [
     m('span', [
       m('button.btn.btn-gradido-orange.btn-xs', {
@@ -87,7 +102,7 @@ function view(vnode) {
         ]),
         dismiss: (e) => {cleanMessage(vnode)}
       }) : null
-  ])
+  ])*/
 }
 
 export default { view, oninit }
