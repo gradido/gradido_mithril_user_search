@@ -4,11 +4,26 @@ import AccountState from '../../model/AccountState'
 import Gradido from '../../lib/Gradido'
 
 import Tooltip from '../../lib/Tooltip'
+import dialog from '../../lib/dialog'
 
 function oninit(vnode) {
-  
+  vnode.state.showEmail = false
+  vnode.state.copyed = false
 }
 
+function toggleEmail(vnode) {
+    vnode.state.showEmail = !vnode.state.showEmail
+}
+
+function showEmail(vnode) {
+    vnode.state.showEmail = true
+    
+}
+
+function hideEmail(vnode) {
+    vnode.state.showEmail = false
+    vnode.state.copyed = false
+}
 
 function view (vnode) {
   
@@ -38,9 +53,33 @@ function view (vnode) {
    if(vnode.attrs.open) {
      buttonState = 'up'
    }
+   
+   // max width for email
+   let email = user.email
+   let isEmailShortend = false
+   let allowedEmailLength = 25
+   if(email.length > allowedEmailLength) {
+       email = user.email.substr(0, allowedEmailLength) + '...'
+       isEmailShortend = true
+   }
    // disable until has function
    //actionColor = false
    //const tooltipContent = status.getTooltipText()
+   
+   let action = vnode.state.copyed ? 
+    m('p', 'email copyed to clipboard') :
+    m('input', {
+                type:'text',
+                name:'email',
+                style:{border:'none', background:'transparent', display:'block'},
+                value:user.email,
+                onclick:(e) => {
+                    //console.log(e)
+                    e.target.select()
+                    document.execCommand("copy")
+                    vnode.state.copyed = true
+                    m.reload()
+                }})
     
    return m('tr', [
      m('td', actionColor !== false ? 
@@ -54,10 +93,22 @@ function view (vnode) {
           m('small', statusTitle),
         ])), {accountState:status}), 
      ]),
-     m('td', user.email),
+     isEmailShortend ? 
+        m('td', {title:user.email}, 
+          m('a', {
+              onclick:() => {toggleEmail(vnode)}//,
+            }, email)
+        ) : m('td', user.email),
      m('td', m(Gradido, {centAmount:user.balance})),
      m('td', {title:user.pubkeyhex}, pubkey_shortend),
-     m('td', m.trust(created))
+     m('td', m.trust(created)),
+     vnode.state.showEmail ? 
+            m(dialog, {
+                title:'Show oversized E-Mail',
+                body: user.email,
+                dismiss: () => {hideEmail(vnode)}
+            })
+            : null
    ])
 }
 
